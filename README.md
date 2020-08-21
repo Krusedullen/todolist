@@ -7,3 +7,4 @@ This is a simple todo list. It accepts a text input from the user and adds it to
 * HTML5
 * CSS3
 * JavaScript
+* ejs 3.1.5
