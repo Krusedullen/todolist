@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>todo list</title>
+
+  <link rel="stylesheet" href="css/styles.css"> <!-- mappen public er definert som en static mappe i app.js og trenger ikke å oppgis is pathen her-->
+</head>
+
+<body>
+
+  <h1><%= kindOfDay %>. ToDo list:</h1>
+
+  <ul>
+    <% for (let i=0; i<newListItems.length; i++){ %>
+    <li><%= newListItems[i] %></li>
+    <% }; %>
+  </ul>
+
+  <form class="" action="/" method="post">
+    <input type="text" name="newItem">
+    <button type="submit" name="button">Add</button>
+  </form>
+
+</body>
+
+</html>

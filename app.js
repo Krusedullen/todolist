@@ -4,16 +4,40 @@ const ejs = require("ejs");
 
 const app = express();
 
-app.use("view engine", "ejs");
+let items = [];
 
-app.get("/", function(req, res){
-  var today = new Date();
-  var currentDay = today.getDay();
-  if( currentDay === 6||currentDay === 0){
-    res.send("Yay it is the weekend!");
-  } else { res.sendFile(__dirname + "/index.html");}
+app.set("view engine", "ejs");
+
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+
+app.use(express.static("public"));
+
+app.get("/", function(req, res) {
+  let today = new Date();
+  // var currentDay = today.getDay();
+  let options = {
+    weekday: "long",
+    day: "numeric",
+    month: "long"
+  };
+
+  let day = today.toLocaleDateString("en-UK", options);
+
+  res.render("list", {
+    kindOfDay: day,
+    newListItems: items
+  });
+
 });
 
-app.listen(3000, function(){
+app.post("/", function(req, res) {
+  item = req.body.newItem;
+  items.push(item);
+  res.redirect("/");
+});
+
+app.listen(3000, function() {
   console.log("server started on port 3000");
 });
