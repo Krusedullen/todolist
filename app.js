@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
-const date = require(__dirname + "/date.js")
+const date = require(__dirname + "/date.js") //this is a local module that we wrote and added to our project
 
 const app = express();
 
@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({
 app.use(express.static("public"));
 
 app.get("/", function(req, res) {
-  let day = date();
+  let day = date.getDate();
   res.render("list", {
     listTitle: day,
     newListItems: items
