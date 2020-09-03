@@ -1,22 +1,24 @@
 <!-- this is an ejs feature that allows you to store html in other files, such as header.ejs and footer.ejs and simply 'include' them at certain places in your html file. -->
 <%- include("header") -%>
 
-  <div class="box" id="heading">
-    <h1><%= listTitle %>. ToDo list:</h1>
-  </div>
+<div class="box" id="heading">
+  <h1><%= listTitle %>. ToDo list:</h1>
+</div>
 
-  <div class="box">
-    <% for (let i=0; i<newListItems.length; i++){ %>
-    <div class="item">
-      <input type="checkbox">
-      <p class="item"><%= newListItems[i] %></p>
-    </div>
-    <% }; %>
-
-    <form class="item" action="/" method="post">
-      <input type="text" name="newItem" placeholder="New Entry" autocomplete="off">
-      <button type="submit" name="list" value=<%= listTitle %>>+</button>
-    </form>
+<div class="box">
+  <% newListItems.forEach(function(item){ %>
+<form class="" action="/delete" method="post">
+  <div class="item">
+    <input type="checkbox" name= "checkedItem" onChange = "this.form.submit()" value= <%=item._id %> >
+    <p class="item"><%= item.name %></p>
   </div>
+</form>
+  <% }); %>
+
+  <form class="item" action="/" method="post">
+    <input type="text" name="newItem" placeholder="New Entry" autocomplete="off">
+    <button type="submit" name="list" value=<%= listTitle %>>+</button>
+  </form>
+</div>
 
 <%- include("footer") -%>
