@@ -2,7 +2,7 @@
 <%- include("header") -%>
 
 <div class="box" id="heading">
-  <h1><%= listTitle %>. ToDo list:</h1>
+  <h1><%= listTitle %></h1>
 </div>
 
 <div class="box">
@@ -12,6 +12,7 @@
     <input type="checkbox" name= "checkedItem" onChange = "this.form.submit()" value= <%=item._id %> >
     <p class="item"><%= item.name %></p>
   </div>
+  <input type="hidden" name="listName" value="<%= listTitle %>"></input>
 </form>
   <% }); %>
 
