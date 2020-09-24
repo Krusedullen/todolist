@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
@@ -12,7 +13,7 @@ app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 
 //"mongodb://localhost:27017/todolistDB" - den lokale adressen for MongoDB i mongoose syntaks
-mongoose.connect("mongodb+srv://admin-therese:lykketroll@cluster0.ruahq.mongodb.net/todolistDB?retryWrites=true&w=majority", {
+mongoose.connect(process.env.MONGODB_KEY, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
@@ -115,7 +116,7 @@ app.post("/", function(req, res) {
       foundList.save();
       if (!err) {
         setTimeout(function() {
-          res.redirect("/" + listName);
+          res.redirect("/");
         }, 500);
       }
 
